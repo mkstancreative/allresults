@@ -2,6 +2,12 @@
 require_once("./db/config.php");
 require_once("./header.php");
 
+
+
+
+
+
+
 ?>
 
 <div class="lga-container">
@@ -22,7 +28,6 @@ require_once("./header.php");
                             <?= $row['lga_name'] ?>
                         </a>
                     </li>
-
             <?php
                 }
             }

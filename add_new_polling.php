@@ -43,6 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $ip = $result->query;
     }
 
+    // Generating Polling Unit id 
+    $pollid = "12345678901234567890";
+    $pollid = str_shuffle($pollid);
+    $pollid = substr($pollid, 0, 2);
+    
+
 
     // Generating Polling Unit Number 
     $rndConst = "DT";
@@ -56,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-    $query1 = "INSERT INTO polling_unit(uniquewardid, lga_id, ward_id,polling_unit_number, polling_unit_name, polling_unit_description, entered_by_user, lat, date_entered, user_ip_address) VALUES ('$uniqueid', '$newpollid', '$wardid', '$polling_num', '$polling_name', '$polling_desc', '$enteredby', '$lat', '$datetime', '$ip')";
+    $query1 = "INSERT INTO polling_unit(`uniquewardid`, `polling_unit_id`, `lga_id`, `ward_id`, `polling_unit_number`, `polling_unit_name`, `polling_unit_description`, `entered_by_user`, `lat`, `long`, `date_entered`, `user_ip_address`)VALUES('$uniqueid', '$pollid', '$newpollid', '$wardid', '$polling_num', '$polling_name', '$polling_desc', '$enteredby', '$lat', '$lon', '$datetime', '$ip')";
 
     // echo "<br>";
     // echo $query1;
