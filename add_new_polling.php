@@ -1,5 +1,4 @@
 <?php
-
 require_once("./db/config.php");
 require_once("header.php");
 
@@ -12,8 +11,6 @@ $msg = null;
 if (isset($_GET['msg'])) {
     $msg = $_GET['msg'];
 }
-
-
 
 $query = "SELECT * FROM ward WHERE lga_id = '$newpollid'";
 $result = mysqli_query($connect, $query);
@@ -28,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $uniqueid = $_POST['uniqueid'];
     $newpollid = isset($_POST['newpollid']);
     $wardid = isset($_POST['wardid']) ? trim($_POST['wardid']) : "";
-    $polling_num = isset($_POST['polling_num']) ? trim($_POST['polling_num']) : "";
     $polling_name = isset($_POST['polling_name']) ? trim($_POST['polling_name']) : "";
     $polling_desc = isset($_POST['polling_desc']) ? trim($_POST['polling_desc']) : "";
     $enteredby = isset($_POST['enteredby']) ? trim($_POST['enteredby']) : "";
@@ -74,9 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
-
-
-
 ?>
 <div class="add-polling-unit-cont">
     <div style="background-color: black;color:white;">
@@ -107,10 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 ?>
             </select>
         </div>
-        <!-- <div class="form-group">
-            <label for="">Polling Unit Number</label>
-            <input type="text" placeholder="Polling Unit Number" name="polling_num">
-        </div> -->
         <div class="form-group">
             <label for="">Polling Unit Name</label>
             <input type="text" placeholder="Polling Unit Name" name="polling_name">
@@ -123,7 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <label for="">Entered By User</label>
             <input type="text" placeholder="Entered By" name="enteredby">
         </div>
-
         <div class="form-group">
 
         </div>
