@@ -22,7 +22,7 @@
             <ul class="nav-items">
                 <li class="nav-item"><a href="polling_units.php" class="nav-link">All Polling Units</a></li>
                 <li class="nav-item"><a href="random_lga.php" class="nav-link">Polling Units From a Random L.G.A</a></li>
-                <li class="nav-item"><a href="new_result.php" class="nav-link">New Result</a></li>
+                <li class="nav-item"><a href="new_result.php" class="nav-link">Register New Polling Unit</a></li>
             </ul>
         </div>
     </div>

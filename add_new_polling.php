@@ -34,14 +34,35 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $enteredby = isset($_POST['enteredby']) ? trim($_POST['enteredby']) : "";
 
 
-    $ip = $_SERVER['REMOTE_ADDR'];
+    // Getting the user Latitude, Longitude and IP Address 
+    $loc = curl_init();
+    curl_setopt($loc, CURLOPT_URL, "http://ip-api.com/json");
+    curl_setopt($loc, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($loc);
+    $result = json_decode($result);
+
+    if ($result->status == "success") {
+        $lon = $result->lon;
+        $lat = $result->lat;
+        $ip = $result->query;
+    }
+
+
+    // Generating Polling Unit Number 
+    $rndConst = "DT";
+    $rndNum = "87446644748756474611130098987575646338373222";
+    $rndNum = str_shuffle($rndNum);
+    $rndNum = substr($rndNum, 0, 7);
+    $polling_num = $rndConst . $rndNum;
+
+    // Getting the Date and Time  
     $datetime = date('Y-m-d H:i:s');
 
 
 
+    $query1 = "INSERT INTO polling_unit(uniquewardid, lga_id, ward_id,polling_unit_number, polling_unit_name, polling_unit_description, entered_by_user, lat, date_entered, user_ip_address) VALUES ('$uniqueid', '$newpollid', '$wardid', '$polling_num', '$polling_name', '$polling_desc', '$enteredby', '$lat', '$datetime', '$ip')";
 
-    $query1 = "INSERT INTO polling_unit(uniquewardid, lga_id, ward_id,polling_unit_number, polling_unit_name, polling_unit_description, entered_by_user, user_ip_address, date_entered) VALUES ('$uniqueid', '$newpollid', '$wardid', '$polling_num', '$polling_name', '$polling_desc', '$enteredby', '$ip', '$datetime')";
-
+    // echo "<br>";
     // echo $query1;
     // die();
 
@@ -86,10 +107,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 ?>
             </select>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="">Polling Unit Number</label>
             <input type="text" placeholder="Polling Unit Number" name="polling_num">
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="">Polling Unit Name</label>
             <input type="text" placeholder="Polling Unit Name" name="polling_name">
